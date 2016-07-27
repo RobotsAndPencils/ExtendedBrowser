@@ -31,18 +31,27 @@ artifacts {
 
 // Bintray
 Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+String userProp
+String keyProp
+String passphraseProp
+
+if (project.rootProject.file('local.properties').exists()) {
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    userProp = properties.getProperty("bintray.user")
+    keyProp = properties.getProperty("bintray.apikey")
+    passphraseProp = properties.getProperty("bintray.gpg.password")
+} else {
+    userProp = System.getenv('bintray.user');
+    keyProp = System.getenv('bintray.apikey');
+    passphraseProp = System.getenv('bintray.gpg.password');
+}
 
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
 
-    if (user == null) {
-        user = System.getenv('bintray.user');
-    }
-    if (key == null) {
-        key = System.getenv('bintray.apikey');
-    }
+    user = userProp
+    key = keyProp
 
     configurations = ['archives']
     pkg {
@@ -58,10 +67,7 @@ bintray {
             desc = libraryDescription
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("bintray.gpg.password")
-                if (passphrase == null) {
-                    passphrase = System.getenv('bintray.gpg.password');
-                }
+                passphrase = passphraseProp
                 //Optional. The passphrase for GPG signing'
             }
         }
