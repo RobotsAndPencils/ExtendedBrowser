@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ExtendedBrowser</string>
+    <string name="web_browser_address_bar_hint">Address</string>
+</resources>
