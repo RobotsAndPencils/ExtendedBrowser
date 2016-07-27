@@ -37,6 +37,13 @@ bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
 
+    if (user == null) {
+        user = System.getenv('bintray.user');
+    }
+    if (key == null) {
+        key = System.getenv('bintray.apikey');
+    }
+
     configurations = ['archives']
     pkg {
         repo = bintrayRepo
@@ -52,6 +59,9 @@ bintray {
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
                 passphrase = properties.getProperty("bintray.gpg.password")
+                if (passphrase == null) {
+                    passphrase = System.getenv('bintray.gpg.password');
+                }
                 //Optional. The passphrase for GPG signing'
             }
         }
