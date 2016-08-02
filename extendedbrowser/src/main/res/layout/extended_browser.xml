@@ -20,7 +20,6 @@
             android:id="@+id/address_bar_view"
             style="@style/WebBrowserAddressBar"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="?android:attr/actionBarSize"
             android:text="@={viewModel.addressBarUrl}"
             android:visibility="@{viewModel.addressBarShowing ? View.VISIBLE : View.GONE}"
             tools:ignore="NewApi" />
