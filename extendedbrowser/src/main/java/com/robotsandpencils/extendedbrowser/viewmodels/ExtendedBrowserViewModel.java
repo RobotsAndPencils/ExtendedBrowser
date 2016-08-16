@@ -30,9 +30,10 @@ public class ExtendedBrowserViewModel extends BaseObservable {
         return showAddressBar;
     }
 
-    public void showAddressBar(boolean showAddressBar) {
+    public ExtendedBrowserViewModel showAddressBar(boolean showAddressBar) {
         this.showAddressBar = showAddressBar;
         notifyPropertyChanged(BR.addressBarShowing);
+        return this;
     }
 
     public void setAddressBarUrl(String addressBarUrl) {

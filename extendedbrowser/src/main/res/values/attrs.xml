@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="ExtendedBrowser">
         <attr name="showNavigationBar" format="boolean" />
+        <attr name="showAddressBar" format="boolean" />
         <attr name="progressBar" format="reference" />
     </declare-styleable>
 </resources>

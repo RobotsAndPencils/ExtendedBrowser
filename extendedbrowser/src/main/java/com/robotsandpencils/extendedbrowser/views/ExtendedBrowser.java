@@ -64,11 +64,14 @@ public class ExtendedBrowser extends RelativeLayout {
     private void init(Context context, AttributeSet attrs) {
         int id = 0;
         boolean showNavigationBar = false;
+        boolean showAddressBar = false;
+
         mBinding = ExtendedBrowserBinding.inflate((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE),
                 this, true);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ExtendedBrowser, 0, 0);
         try {
             showNavigationBar = ta.getBoolean(R.styleable.ExtendedBrowser_showNavigationBar, false);
+            showAddressBar = ta.getBoolean(R.styleable.ExtendedBrowser_showAddressBar, false);
             id = ta.getResourceId(R.styleable.ExtendedBrowser_progressBar, 0);
         } finally {
             ta.recycle();
@@ -78,7 +81,7 @@ public class ExtendedBrowser extends RelativeLayout {
             return;
         }
 
-        mViewModel = new ExtendedBrowserViewModel().showNavigationBar(showNavigationBar);
+        mViewModel = new ExtendedBrowserViewModel().showNavigationBar(showNavigationBar).showAddressBar(showAddressBar);
 
         mProgressBar = (ProgressBar) findViewById(id);
         mBinding.navigationReload.setOnClickListener(new OnClickListener() {
@@ -171,6 +174,18 @@ public class ExtendedBrowser extends RelativeLayout {
 
     public void showAddressBar(boolean showAddressBar) {
         mViewModel.showAddressBar(showAddressBar);
+    }
+
+    public void showNavigationBar(boolean showAddressBar) {
+        mViewModel.showNavigationBar(showAddressBar);
+    }
+
+    public boolean isAddressBarShowing() {
+        return mViewModel.isAddressBarShowing();
+    }
+
+    public boolean isNavigationBarShowing() {
+        return mViewModel.isNavigationBarShowing();
     }
 
     public void setAddressBarUrl(String url) {
