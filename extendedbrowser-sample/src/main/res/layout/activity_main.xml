@@ -10,15 +10,23 @@
         <LinearLayout android:id="@+id/bottomBar"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:layout_alignParentBottom="true">
+                      android:layout_alignParentBottom="true"
+                      android:orientation="horizontal">
 
-            <Button android:layout_width="wrap_content" android:id="@+id/toggleAddressBar"
+            <Button android:id="@+id/toggleAddressBar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toggle address bar"/>
+                    android:text="Address bar"/>
 
-            <Button android:layout_width="wrap_content" android:id="@+id/toggleNavigationBar"
+            <Button android:id="@+id/toggleNavigationBar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toggle navigation"/>
+                    android:text="Navigation"/>
+
+            <Button android:id="@+id/load"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Load"/>
 
         </LinearLayout>
 

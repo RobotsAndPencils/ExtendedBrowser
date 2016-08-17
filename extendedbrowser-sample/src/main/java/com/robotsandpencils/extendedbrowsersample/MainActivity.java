@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        mBinding.webViewBrowser.attachDefaultWebViewClient();
+
         mBinding.toggleAddressBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +29,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mBinding.webViewBrowser.showNavigationBar(!mBinding.webViewBrowser.isNavigationBarShowing());
+            }
+        });
+
+        mBinding.load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBinding.webViewBrowser.setAddressBarUrl("http://dev.android.com", true);
+            }
+        });
+
+        mBinding.webViewBrowser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBinding.bottomBar.getVisibility() == View.VISIBLE) {
+                    mBinding.bottomBar.setVisibility(View.GONE);
+                } else {
+                    mBinding.bottomBar.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
