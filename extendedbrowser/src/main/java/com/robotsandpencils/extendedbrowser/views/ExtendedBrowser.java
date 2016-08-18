@@ -30,8 +30,9 @@ import com.robotsandpencils.extendedbrowser.databinding.ExtendedBrowserBinding;
 import com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel;
 
 /**
- * Created by: farhankhan
- * Created on: 2016-07-04.
+ * Main ExtendedBrowser class
+ * <p>
+ * Created by farhankhan on 2016-07-04.
  */
 public class ExtendedBrowser extends RelativeLayout {
 

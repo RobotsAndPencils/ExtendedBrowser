@@ -13,8 +13,9 @@ import android.databinding.Bindable;
 import com.robotsandpencils.extendedbrowser.BR;
 
 /**
- * Created by: farhankhan
- * Created on: 2016-07-13.
+ * ViewModel class for handling two-way data binding
+ * <p>
+ * Created by farhankhan on 2016-07-13.
  */
 public class ExtendedBrowserViewModel extends BaseObservable {
     private boolean showNavigationBar;
