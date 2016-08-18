@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2016 Robots and Pencils, Inc
+
+  This software may be modified and distributed under the terms
+  of the MIT license.  See the LICENSE.txt file for details.
+  -->
+
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>

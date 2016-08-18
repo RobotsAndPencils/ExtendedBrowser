@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016 Robots and Pencils, Inc
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE.txt file for details.
+ */
+
 package com.robotsandpencils.extendedbrowser.views;
 
 import android.annotation.SuppressLint;
@@ -13,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,8 +30,9 @@ import com.robotsandpencils.extendedbrowser.databinding.ExtendedBrowserBinding;
 import com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel;
 
 /**
- * Created by: farhankhan
- * Created on: 2016-07-04.
+ * Main ExtendedBrowser class
+ * <p>
+ * Created by farhankhan on 2016-07-04.
  */
 public class ExtendedBrowser extends RelativeLayout {
 
@@ -38,6 +47,18 @@ public class ExtendedBrowser extends RelativeLayout {
 
     @Nullable
     private ProgressBar mProgressBar;
+
+    /**
+     * Default web view client.
+     */
+    private class DefaultWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return false;
+        }
+    }
 
     public ExtendedBrowser(Context context) {
         super(context);
@@ -64,11 +85,14 @@ public class ExtendedBrowser extends RelativeLayout {
     private void init(Context context, AttributeSet attrs) {
         int id = 0;
         boolean showNavigationBar = false;
+        boolean showAddressBar = false;
+
         mBinding = ExtendedBrowserBinding.inflate((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE),
                 this, true);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ExtendedBrowser, 0, 0);
         try {
             showNavigationBar = ta.getBoolean(R.styleable.ExtendedBrowser_showNavigationBar, false);
+            showAddressBar = ta.getBoolean(R.styleable.ExtendedBrowser_showAddressBar, false);
             id = ta.getResourceId(R.styleable.ExtendedBrowser_progressBar, 0);
         } finally {
             ta.recycle();
@@ -78,7 +102,7 @@ public class ExtendedBrowser extends RelativeLayout {
             return;
         }
 
-        mViewModel = new ExtendedBrowserViewModel().showNavigationBar(showNavigationBar);
+        mViewModel = new ExtendedBrowserViewModel().showNavigationBar(showNavigationBar).showAddressBar(showAddressBar);
 
         mProgressBar = (ProgressBar) findViewById(id);
         mBinding.navigationReload.setOnClickListener(new OnClickListener() {
@@ -128,7 +152,6 @@ public class ExtendedBrowser extends RelativeLayout {
             }
         });
 
-
         @SuppressWarnings("ConstantConditions") WebView webView = mBinding.nativeWebView;
         webView.getSettings().setJavaScriptEnabled(true);
 
@@ -161,19 +184,95 @@ public class ExtendedBrowser extends RelativeLayout {
         mBinding.setViewModel(mViewModel);
     }
 
+    /**
+     * Setting custom OnBackNotAvailableListener
+     *
+     * @param listener OnBackNotAvailableListener
+     */
     public void setOnBackNotAvailableListener(OnBackNotAvailableListener listener) {
         mOnBackNotAvailableListener = listener;
     }
 
+    /**
+     * Returns ExtendedBrowser's WebView object
+     *
+     * @return WebView
+     */
     public WebView getWebView() {
         return mBinding.nativeWebView;
     }
 
+    /**
+     * Show/hide address bar
+     *
+     * @param showAddressBar
+     */
     public void showAddressBar(boolean showAddressBar) {
         mViewModel.showAddressBar(showAddressBar);
     }
 
+    /**
+     * Show/hide navigation bar
+     *
+     * @param showAddressBar boolean
+     */
+    public void showNavigationBar(boolean showAddressBar) {
+        mViewModel.showNavigationBar(showAddressBar);
+    }
+
+    /**
+     * Returns address bar visibility state
+     *
+     * @return boolean
+     */
+    public boolean isAddressBarShowing() {
+        return mViewModel.isAddressBarShowing();
+    }
+
+    /**
+     * Returns navigation bar visibility state
+     *
+     * @return boolean
+     */
+    public boolean isNavigationBarShowing() {
+        return mViewModel.isNavigationBarShowing();
+    }
+
+    /**
+     * Setting url string in address bar.
+     *
+     * @param url String
+     */
     public void setAddressBarUrl(String url) {
         mViewModel.setAddressBarUrl(url);
+    }
+
+    /**
+     * Setting url string in address bar and optionally loading that url in the browser.
+     *
+     * @param url String
+     * @param loadUrl boolean Set to true if you want the url to load in a browser
+     */
+    public void setAddressBarUrl(String url, boolean loadUrl) {
+        mViewModel.setAddressBarUrl(url);
+        if (loadUrl) {
+            getWebView().loadUrl(url);
+        }
+    }
+
+    /**
+     * Attaching default web view client
+     */
+    public void attachDefaultWebViewClient() {
+        mBinding.nativeWebView.setWebViewClient(new DefaultWebViewClient());
+    }
+
+    /**
+     * Setting custom web view client
+     *
+     * @param client WebViewClient
+     */
+    public void setWebViewClient(WebViewClient client) {
+        mBinding.nativeWebView.setWebViewClient(client);
     }
 }

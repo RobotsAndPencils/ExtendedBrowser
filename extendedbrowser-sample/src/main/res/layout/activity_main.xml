@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/activity_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.robotsandpencils.extendedbrowsersample.MainActivity">
+<!--
+  Copyright (C) 2016 Robots and Pencils, Inc
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
-        app:layout_constraintTop_toTopOf="@+id/activity_main"
-        app:layout_constraintRight_toRightOf="@+id/activity_main"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"/>
+  This software may be modified and distributed under the terms
+  of the MIT license.  See the LICENSE.txt file for details.
+  -->
 
-</android.support.constraint.ConstraintLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.robotsandpencils.extendedbrowsersample.MainActivity">
+
+        <LinearLayout android:id="@+id/bottomBar"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentBottom="true"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/toggleAddressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address bar"/>
+
+            <Button android:id="@+id/toggleNavigationBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Navigation"/>
+
+            <Button android:id="@+id/load"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Load"/>
+
+        </LinearLayout>
+
+        <com.robotsandpencils.extendedbrowser.views.ExtendedBrowser
+            android:id="@+id/web_view_browser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottomBar"
+            app:showAddressBar="true"
+            app:showNavigationBar="true"/>
+
+    </RelativeLayout>
+</layout>

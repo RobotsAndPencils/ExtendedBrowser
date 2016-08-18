@@ -1,3 +1,10 @@
+/*
+ * Copyright (C) 2016 Robots and Pencils, Inc
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license.  See the LICENSE.txt file for details.
+ */
+
 package com.robotsandpencils.extendedbrowser.viewmodels;
 
 import android.databinding.BaseObservable;
@@ -6,8 +13,9 @@ import android.databinding.Bindable;
 import com.robotsandpencils.extendedbrowser.BR;
 
 /**
- * Created by: farhankhan
- * Created on: 2016-07-13.
+ * ViewModel class for handling two-way data binding
+ * <p>
+ * Created by farhankhan on 2016-07-13.
  */
 public class ExtendedBrowserViewModel extends BaseObservable {
     private boolean showNavigationBar;
@@ -30,9 +38,10 @@ public class ExtendedBrowserViewModel extends BaseObservable {
         return showAddressBar;
     }
 
-    public void showAddressBar(boolean showAddressBar) {
+    public ExtendedBrowserViewModel showAddressBar(boolean showAddressBar) {
         this.showAddressBar = showAddressBar;
         notifyPropertyChanged(BR.addressBarShowing);
+        return this;
     }
 
     public void setAddressBarUrl(String addressBarUrl) {
