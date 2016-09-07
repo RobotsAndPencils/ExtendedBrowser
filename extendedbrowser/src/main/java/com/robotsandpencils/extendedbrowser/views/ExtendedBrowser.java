@@ -32,7 +32,7 @@ import com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel;
 
 /**
  * Main ExtendedBrowser class
- * <p/>
+ * <p>
  * Created by farhankhan on 2016-07-04.
  */
 public class ExtendedBrowser extends RelativeLayout {

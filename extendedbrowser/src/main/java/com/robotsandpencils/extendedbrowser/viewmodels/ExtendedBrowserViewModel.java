@@ -14,7 +14,7 @@ import com.robotsandpencils.extendedbrowser.BR;
 
 /**
  * ViewModel class for handling two-way data binding
- * <p/>
+ * <p>
  * Created by farhankhan on 2016-07-13.
  */
 public class ExtendedBrowserViewModel extends BaseObservable {
