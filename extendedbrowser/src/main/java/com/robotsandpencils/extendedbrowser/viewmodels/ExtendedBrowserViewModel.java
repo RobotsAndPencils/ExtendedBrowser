@@ -14,7 +14,7 @@ import com.robotsandpencils.extendedbrowser.BR;
 
 /**
  * ViewModel class for handling two-way data binding
- * <p>
+ * <p/>
  * Created by farhankhan on 2016-07-13.
  */
 public class ExtendedBrowserViewModel extends BaseObservable {
@@ -44,13 +44,14 @@ public class ExtendedBrowserViewModel extends BaseObservable {
         return this;
     }
 
-    public void setAddressBarUrl(String addressBarUrl) {
-        this.addressBarUrl = addressBarUrl;
-        notifyPropertyChanged(BR.addressBarUrl);
-    }
-
     @Bindable
     public String getAddressBarUrl() {
         return addressBarUrl;
+    }
+
+    public ExtendedBrowserViewModel setAddressBarUrl(String addressBarUrl) {
+        this.addressBarUrl = addressBarUrl;
+        notifyPropertyChanged(BR.addressBarUrl);
+        return this;
     }
 }

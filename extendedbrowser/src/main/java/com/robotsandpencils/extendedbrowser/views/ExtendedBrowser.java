@@ -21,6 +21,7 @@ import android.view.inputmethod.EditorInfo;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel;
 
 /**
  * Main ExtendedBrowser class
- * <p>
+ * <p/>
  * Created by farhankhan on 2016-07-04.
  */
 public class ExtendedBrowser extends RelativeLayout {
@@ -203,6 +204,15 @@ public class ExtendedBrowser extends RelativeLayout {
     }
 
     /**
+     * Returns address bar edit object
+     *
+     * @return EditText
+     */
+    public EditText getAddressBarView() {
+        return mBinding.addressBarView;
+    }
+
+    /**
      * Show/hide address bar
      *
      * @param showAddressBar
@@ -239,7 +249,7 @@ public class ExtendedBrowser extends RelativeLayout {
     }
 
     /**
-     * Setting url string in address bar.
+     * Setting url string in address bar
      *
      * @param url String
      */
@@ -250,7 +260,7 @@ public class ExtendedBrowser extends RelativeLayout {
     /**
      * Setting url string in address bar and optionally loading that url in the browser.
      *
-     * @param url String
+     * @param url     String
      * @param loadUrl boolean Set to true if you want the url to load in a browser
      */
     public void setAddressBarUrl(String url, boolean loadUrl) {

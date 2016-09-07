@@ -7,15 +7,15 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
-            type="com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel" />
+            type="com.robotsandpencils.extendedbrowser.viewmodels.ExtendedBrowserViewModel"/>
     </data>
 
     <RelativeLayout
@@ -27,9 +27,10 @@
             android:id="@+id/address_bar_view"
             style="@style/WebBrowserAddressBar"
             android:layout_alignParentTop="true"
-            android:text="@={viewModel.addressBarUrl}"
+            android:inputType="textNoSuggestions"
+            android:text="@{viewModel.addressBarUrl}"
             android:visibility="@{viewModel.addressBarShowing ? View.VISIBLE : View.GONE}"
-            tools:ignore="NewApi" />
+            tools:ignore="NewApi"/>
 
         <LinearLayout
             android:id="@+id/navbar"
@@ -59,7 +60,7 @@
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/nav_button_back_src_selector"
                     tools:ignore="ContentDescription"
-                    tools:targetApi="honeycomb" />
+                    tools:targetApi="honeycomb"/>
 
                 <ImageButton
                     android:id="@+id/navigation_right"
@@ -73,7 +74,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/nav_button_forward_src_selector"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"/>
 
                 <ImageButton
                     android:id="@+id/navigation_reload"
@@ -85,7 +86,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/icon_refresh_browser"
-                    tools:ignore="ContentDescription,NewApi" />
+                    tools:ignore="ContentDescription,NewApi"/>
 
             </RelativeLayout>
 
@@ -96,6 +97,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/navbar"
-            android:padding="5dp" />
+            android:padding="5dp"/>
     </RelativeLayout>
 </layout>

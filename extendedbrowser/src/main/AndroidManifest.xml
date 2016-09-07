@@ -5,13 +5,11 @@
   of the MIT license.  See the LICENSE.txt file for details.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.robotsandpencils.extendedbrowser">
+<manifest package="com.robotsandpencils.extendedbrowser"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:label="@string/app_name"
         android:supportsRtl="true">
-
     </application>
 
 </manifest>
