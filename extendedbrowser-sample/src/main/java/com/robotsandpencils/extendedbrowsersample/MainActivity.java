@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         mBinding.webViewBrowser.attachDefaultWebViewClient();
+        mBinding.webViewBrowser.setBackButtonDescription(getString(R.string.back_button_description));
+        mBinding.webViewBrowser.setForwardButtonDescription(getString(R.string.forward_button_description));
+        mBinding.webViewBrowser.setRefreshButtonDescription(getString(R.string.refresh_button_description));
 
         mBinding.toggleAddressBar.setOnClickListener(new View.OnClickListener() {
             @Override

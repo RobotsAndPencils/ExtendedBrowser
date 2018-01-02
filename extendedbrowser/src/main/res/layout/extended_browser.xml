@@ -59,8 +59,8 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/nav_button_back_src_selector"
-                    tools:ignore="ContentDescription"
-                    tools:targetApi="honeycomb"/>
+                    tools:targetApi="honeycomb"
+                    android:contentDescription="@{viewModel.backButtonDescription}"/>
 
                 <ImageButton
                     android:id="@+id/navigation_right"
@@ -74,7 +74,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/nav_button_forward_src_selector"
-                    tools:ignore="ContentDescription"/>
+                    android:contentDescription="@{viewModel.forwardButtonDescription}"/>
 
                 <ImageButton
                     android:id="@+id/navigation_reload"
@@ -86,7 +86,8 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="@dimen/web_navigation_view_padding"
                     android:src="@drawable/icon_refresh_browser"
-                    tools:ignore="ContentDescription,NewApi"/>
+                    android:contentDescription="@{viewModel.refreshButtonDescription}"
+                    tools:ignore="NewApi"/>
 
             </RelativeLayout>
 
