@@ -14,13 +14,16 @@ import com.robotsandpencils.extendedbrowser.BR;
 
 /**
  * ViewModel class for handling two-way data binding
- * <p>
+ *
  * Created by farhankhan on 2016-07-13.
  */
 public class ExtendedBrowserViewModel extends BaseObservable {
     private boolean showNavigationBar;
     private String addressBarUrl;
     private boolean showAddressBar;
+    private String backButtonDescription;
+    private String forwardButtonDescription;
+    private String refreshButtonDescription;
 
     @Bindable
     public boolean isNavigationBarShowing() {
@@ -49,9 +52,43 @@ public class ExtendedBrowserViewModel extends BaseObservable {
         return addressBarUrl;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ExtendedBrowserViewModel setAddressBarUrl(String addressBarUrl) {
         this.addressBarUrl = addressBarUrl;
         notifyPropertyChanged(BR.addressBarUrl);
+        return this;
+    }
+
+    @Bindable
+    public String getBackButtonDescription() {
+        return backButtonDescription;
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public ExtendedBrowserViewModel setBackButtonDescription(String backButtonDescription) {
+        this.backButtonDescription = backButtonDescription;
+        return this;
+    }
+
+    @Bindable
+    public String getForwardButtonDescription() {
+        return forwardButtonDescription;
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public ExtendedBrowserViewModel setForwardButtonDescription(String forwardButtonDescription) {
+        this.forwardButtonDescription = forwardButtonDescription;
+        return this;
+    }
+
+    @Bindable
+    public String getRefreshButtonDescription() {
+        return refreshButtonDescription;
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public ExtendedBrowserViewModel setRefreshButtonDescription(String refreshButtonDescription) {
+        this.refreshButtonDescription = refreshButtonDescription;
         return this;
     }
 }

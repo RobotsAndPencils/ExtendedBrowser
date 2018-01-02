@@ -84,9 +84,9 @@ public class ExtendedBrowser extends RelativeLayout {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void init(Context context, AttributeSet attrs) {
-        int id = 0;
-        boolean showNavigationBar = false;
-        boolean showAddressBar = false;
+        int id;
+        boolean showNavigationBar;
+        boolean showAddressBar;
 
         mBinding = ExtendedBrowserBinding.inflate((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE),
                 this, true);
@@ -103,9 +103,11 @@ public class ExtendedBrowser extends RelativeLayout {
             return;
         }
 
-        mViewModel = new ExtendedBrowserViewModel().showNavigationBar(showNavigationBar).showAddressBar(showAddressBar);
+        mViewModel = new ExtendedBrowserViewModel()
+                .showNavigationBar(showNavigationBar)
+                .showAddressBar(showAddressBar);
 
-        mProgressBar = (ProgressBar) findViewById(id);
+        mProgressBar = findViewById(id);
         mBinding.navigationReload.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,14 +164,11 @@ public class ExtendedBrowser extends RelativeLayout {
         }
 
         // enable pinch zoom
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webView.getSettings().setBuiltInZoomControls(true);
-            webView.getSettings().setDisplayZoomControls(false);
-        }
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
 
         // enable javascript
         webView.getSettings().setJavaScriptEnabled(true);
-        //_webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
         // enable html5 local storage
         webView.getSettings().setDomStorageEnabled(true);
@@ -190,6 +189,7 @@ public class ExtendedBrowser extends RelativeLayout {
      *
      * @param listener OnBackNotAvailableListener
      */
+    @SuppressWarnings("unused")
     public void setOnBackNotAvailableListener(OnBackNotAvailableListener listener) {
         mOnBackNotAvailableListener = listener;
     }
@@ -208,6 +208,7 @@ public class ExtendedBrowser extends RelativeLayout {
      *
      * @return EditText
      */
+    @SuppressWarnings("unused")
     public EditText getAddressBarView() {
         return mBinding.addressBarView;
     }
@@ -215,7 +216,7 @@ public class ExtendedBrowser extends RelativeLayout {
     /**
      * Show/hide address bar
      *
-     * @param showAddressBar
+     * @param showAddressBar boolean
      */
     public void showAddressBar(boolean showAddressBar) {
         mViewModel.showAddressBar(showAddressBar);
@@ -253,6 +254,7 @@ public class ExtendedBrowser extends RelativeLayout {
      *
      * @param url String
      */
+    @SuppressWarnings("unused")
     public void setAddressBarUrl(String url) {
         mViewModel.setAddressBarUrl(url);
     }
@@ -263,6 +265,7 @@ public class ExtendedBrowser extends RelativeLayout {
      * @param url     String
      * @param loadUrl boolean Set to true if you want the url to load in a browser
      */
+    @SuppressWarnings("SameParameterValue")
     public void setAddressBarUrl(String url, boolean loadUrl) {
         mViewModel.setAddressBarUrl(url);
         if (loadUrl) {
@@ -282,7 +285,38 @@ public class ExtendedBrowser extends RelativeLayout {
      *
      * @param client WebViewClient
      */
+    @SuppressWarnings("unused")
     public void setWebViewClient(WebViewClient client) {
         mBinding.nativeWebView.setWebViewClient(client);
+    }
+
+    /**
+     * Set back button description for accessibility
+     *
+     * @param backButtonDescription String
+     */
+    @SuppressWarnings("unused")
+    public void setBackButtonDescription(String backButtonDescription) {
+        mViewModel.setBackButtonDescription(backButtonDescription);
+    }
+
+    /**
+     * Set forward button description for accessibility
+     *
+     * @param forwardButtonDescription String
+     */
+    @SuppressWarnings("unused")
+    public void setForwardButtonDescription(String forwardButtonDescription) {
+        mViewModel.setForwardButtonDescription(forwardButtonDescription);
+    }
+
+    /**
+     * Set refresh button description for accessibility
+     *
+     * @param refreshButtonDescription String
+     */
+    @SuppressWarnings("unused")
+    public void setRefreshButtonDescription(String refreshButtonDescription) {
+        mViewModel.setRefreshButtonDescription(refreshButtonDescription);
     }
 }
